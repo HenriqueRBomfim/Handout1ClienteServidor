@@ -13,6 +13,6 @@ def load_data(nome):
         texto = arquivo_json.read()
     return json.loads(texto)
 
-'''def load_template():
-    return 0
-'''
+def load_template(arquivo):
+    with open("templates/" + arquivo, 'r') as string:
+        return string.read()
