@@ -9,20 +9,19 @@ def read_file(path):
     return resposta
 
 def load_data(nome):
-    with open("data/" + nome, 'r') as arquivo_json:
+    with open("data/" + nome, 'r', encoding='utf-8') as arquivo_json:
         texto = arquivo_json.read()
     return json.loads(texto)
 
 def load_template(arquivo):
-    with open("templates/" + arquivo, 'r') as string:
+    with open("templates/" + arquivo, 'r', encoding='utf-8') as string:
         return string.read()
     
 def adiciona(anotacao):
-    with open("data/notes.json", 'w') as arquivo:
-        lista = load_data("notes.json")
-        lista.append(anotacao)
-        novo_json = json.dumps(lista)
-        return arquivo.write(novo_json)
+    lista = load_data("notes.json")
+    lista.append(anotacao)
+    with open("data/notes.json", 'w', encoding='utf-8') as arquivo:
+        return arquivo.write(json.dumps(lista, indent=4))
     
 def build_response(body='', code=200, reason='OK', headers=''):
     response = ''

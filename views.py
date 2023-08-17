@@ -18,7 +18,7 @@ def index(request):
             separados = chave_valor.split("=")
             novo_valor = unquote_plus(separados[1])
             params[separados[0]] = novo_valor
-            adiciona(params)
+        adiciona(params)
 
         return build_response(code=303, reason='See Other', headers='Location: /')
 
