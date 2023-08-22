@@ -30,5 +30,13 @@
     {
         "titulo": "Cadu Receitas",
         "detalhes": "Bolo de Ketchup com Maionesa"
+    },
+    {
+        "titulo": "Selber Receitas",
+        "detalhes": "Bolo de cenoura com manteiga"
+    },
+    {
+        "titulo": "Batata",
+        "detalhes": "batata doce caipira"
     }
 ]
