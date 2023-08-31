@@ -1,4 +1,4 @@
-from utils import load_data, load_template, build_response, adiciona
+from utils import load_data, load_template, build_response, adiciona, extract_route
 from urllib.parse import unquote_plus
 from database import Database, Note
 
@@ -35,12 +35,45 @@ def index(request):
     
     note_template = load_template('components/note.html')
     notes_li = [
-        note_template.format(title=dados.title, details=dados.content)
+        note_template.format(title=dados.title, details=dados.content, id=dados.id)
         for dados in load_data(db)
     ]
         
     notes = '\n'.join(notes_li)
 
     body = load_template('index.html').format(notes=notes)
+
+    return build_response(body = body)
+
+def edit(request):
+    db = Database('data/banco')
+    rota = extract_route(request).split('/')
+
+    if type(rota[1]) == str:
+        id = int(rota[1])
+
+    for nota in db.get_all():
+        if nota.id == id:
+            nota_content = nota.content
+            nota_title = nota.title
+
+    if request.startswith('POST'):
+        request = request.replace('\r', '')
+        partes = request.split('\n\n')
+        corpo = partes[-1]
+        params = {}
+        if corpo != "":
+            chave_valor = corpo.split('&')
+            esquerda = chave_valor[0].split("=")
+            titulo = unquote_plus(esquerda[1])
+            direita = chave_valor[1].split("=")
+            conteudo = unquote_plus(direita[1])
+            params[titulo] = conteudo
+        
+        db.update(Note(title=titulo, content=params[titulo], id = rota[1]))
+
+        return build_response(code=303, reason='See Other', headers='Location: /')
+    
+    body = load_template('edit.html').format(id=id, title=nota_title, content=nota_content)
 
     return build_response(body = body)

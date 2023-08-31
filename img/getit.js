@@ -7,6 +7,10 @@ function getRandomInt(min, max) {
 document.addEventListener("DOMContentLoaded", function () {
   // Faz textarea aumentar a altura automaticamente
   // Fonte: https://www.geeksforgeeks.org/how-to-create-auto-resize-textarea-using-javascript-jquery/#:~:text=It%20can%20be%20achieved%20by,height%20of%20an%20element%20automatically.
+  const editButton = document.getElementById("editButton");
+  const noteContent = document.getElementsByClassName("card-content");
+  const noteTitle = document.getElementsByClassName("card-title");
+  
   let textareas = document.getElementsByClassName("autoresize");
   for (let i = 0; i < textareas.length; i++) {
     let textarea = textareas[i];
