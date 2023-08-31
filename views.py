@@ -77,3 +77,19 @@ def edit(request):
     body = load_template('edit.html').format(id=id, title=nota_title, content=nota_content)
 
     return build_response(body = body)
+
+def delete(id):
+    db = Database('data/banco')
+    db.delete(id)
+    
+    note_template = load_template('components/note.html')
+    notes_li = [
+        note_template.format(title=dados.title, details=dados.content, id=dados.id)
+        for dados in load_data(db)
+    ]
+        
+    notes = '\n'.join(notes_li)
+
+    body = load_template('index.html').format(notes=notes)
+    
+    return build_response(body = body, code=303, reason='See Other', headers='Location: /')
