@@ -15,7 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Roboto&family=Permanent+Marker&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="img/getit.css" />
+  <link rel="stylesheet" href="/img/getit.css" />
 </head>
 <body>
     <main class="container">
@@ -24,7 +24,7 @@
         <span class="subtitle">Como o Post-it, mas com outro verbo</span>
       </div>
       
-      <form class="form-card">
+      <form method = "post" class="form-card">
         <input
           class="form-card-title"
           type="text"
@@ -39,11 +39,11 @@
         <button class="btn" type="submit">Criar</button>
       </form>
       
-      <div class = 'card-container'>
+      <ul class = 'card-container'>
         {notes}
-      </div>
+      </ul>
     </main>
-    <script type="text/javascript" src="./getit.js"></script>
+    <script type="text/javascript" src="../img/getit.js"></script>
 
 </body>
 </html>

@@ -3,16 +3,13 @@ from urllib.parse import unquote_plus
 from database import Database, Note
 
 def index(request):
-
     db = Database('data/banco')
 
     # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
     if request.startswith('POST'):
         request = request.replace('\r', '')  # Remove caracteres indesejados
-        print(request)
         # Cabeçalho e corpo estão sempre separados por duas quebras de linha
         partes = request.split('\n\n')
-        print(partes)
         corpo = partes[-1]
         params = {}
         # Preencha o dicionário params com as informações do corpo da requisição
@@ -20,14 +17,15 @@ def index(request):
         # Posteriormente pode ser interessante criar uma função que recebe a
         # requisição e devolve os parâmetros para desacoplar esta lógica.
         # Dica: use o método split da string e a função unquote_plus
-        for chave_valor in corpo.split('&'):
-            separados = chave_valor.split("=")
-            novo_valor = unquote_plus(separados[1])
-            chave = separados[0]
-            params[chave] = novo_valor
+        if corpo != "":
+            chave_valor = corpo.split('&')
+            esquerda = chave_valor[0].split("=")
+            titulo = unquote_plus(esquerda[1])
+            direita = chave_valor[1].split("=")
+            conteudo = unquote_plus(direita[1])
+            params[titulo] = conteudo
         
-        db.add(Note(title=chave, details=params[chave]))
-        #adiciona(params)
+        db.add(Note(title=titulo, content=params[titulo]))
 
         return build_response(code=303, reason='See Other', headers='Location: /')
 
@@ -38,7 +36,7 @@ def index(request):
     note_template = load_template('components/note.html')
     notes_li = [
         note_template.format(title=dados.title, details=dados.content)
-        for dados in db.get_all()
+        for dados in load_data(db)
     ]
         
     notes = '\n'.join(notes_li)

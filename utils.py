@@ -6,8 +6,7 @@ def extract_route(requisicao):
 
 def read_file(path):
     with open(path, 'rb') as f:
-        resposta = f.read()
-    return resposta
+        return f.read()
 
 def load_data(db):
     '''with open("data/" + nome, 'r', encoding='utf-8') as arquivo_json:
