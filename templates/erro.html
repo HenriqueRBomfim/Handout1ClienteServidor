@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Get-it</title>
+  <title>Get-it/Error</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link
     rel="stylesheet"
@@ -17,38 +17,15 @@
   />
   <link rel="stylesheet" href="/img/getit.css" />
 </head>
-<body>
+<body class="pagenotfound">
     <main class="container">
+      
       <div class="appbar">
-        <img src="img/logo-getit.png" class="logo" />
+        <img src="/img/logo-getit.png" class="logo" />
         <span class="subtitle">Como o Post-it, mas com outro verbo</span>
       </div>
       
-      <form method = "post" class="form-card">
-        <input
-          class="form-card-title"
-          type="text"
-          name="titulo"
-          placeholder="Título"
-        />
-        <textarea
-          class="autoresize"
-          name="detalhes"
-          placeholder="Digite o conteúdo..."
-        ></textarea>
-        <button class="btn" type="submit" >Criar</button>
-      </form>
-      
-      <ul class = 'card-container'>
-        {notes}
-      </ul>
-
-      <div class="espacosuperior">
-        <a href="/apagartudo" class="apagartudo">
-          <h3>Apagar todas as notas</h3>
-        </a>
-      </div>
-      
+      <button class="btn" type="button" onclick="window.location.href = '../'">Retornar</button>
 
     </main>
     <script type="text/javascript" src="../img/getit.js"></script>

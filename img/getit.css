@@ -127,7 +127,7 @@ body {
 .card-container {
   display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content:space-around;
     max-width: 90%;
     flex-wrap: wrap;
 }
@@ -261,4 +261,36 @@ body {
   justify-content: center;
   align-items: center;
   background: none;
+}
+.pagenotfound{
+    background-image: url('/img/pagenotfound.png');
+    background-size: cover; /* Isso faz com que a imagem cubra todo o elemento body */
+    background-repeat: no-repeat; /* Impede a repetição da imagem */
+    background-attachment: fixed; /* Mantém a imagem fixa enquanto você rola a página */
+}
+.apagartudo{
+  display: block;
+  padding: 7%;
+  text-align: center;
+  text-decoration: none;
+
+  overflow: visible;
+
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  color: #2c2c2c;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 0.2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+  background-color: #f7d736;
+  width: 100%;
+}
+
+.espacosuperior{
+  display: flex;
+  max-width: 20%;
+  padding-top: 4rem;
 }

@@ -93,3 +93,27 @@ def delete(id):
     body = load_template('index.html').format(notes=notes)
     
     return build_response(body = body, code=303, reason='See Other', headers='Location: /')
+
+def code_404():
+    body = load_template('erro.html')
+    return build_response(body = body, code=404, reason='See Other', headers='Location: /')
+
+def delete_all():
+    db = Database('data/banco')
+
+    for nota in db.get_all():
+        id = nota.id
+        db.delete(id)
+    
+    note_template = load_template('components/note.html')
+    notes_li = [
+        note_template.format(title=dados.title, details=dados.content, id=dados.id)
+        for dados in load_data(db)
+    ]
+        
+    notes = '\n'.join(notes_li)
+    
+    body = load_template('index.html').format(notes=notes)
+    
+    return build_response(body = body,code=303, reason='See Other', headers='Location: /')
+    
